@@ -21,10 +21,10 @@ El proyecto estará estructurado de la siguiente forma:
 
 - README.md
 - doc
-   - 1.descripcion.d
+   - 1.descripcion.md
    - 2.analisis.md
    - 3.disenho.md
-   - referencias
+   - referencias.md
 - UF1_Proyecto 
 
 En la carpeta doc se encuentra toda la documentación que debéis cubrir antes de comenzar a programar y refinar una vez vayáis completando el proyecto. En la carpeta UF1_Proyecto debéis añadir el código generado, se añade una carpeta de ejemplo pero se puede modificar todo lo necesario.  
