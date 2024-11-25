@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="VerdeBase">#265C34</color>
+    <color name="VerdeOscuro">#29412F</color>
+    <color name="VerdeClaro">#2F7240</color>
+
+    <color name="NaranjaOscuro">#D35100</color>
+    <color name="NaranjaBase">#FF9500</color>
 </resources>
