@@ -30,7 +30,6 @@
         android:background="@drawable/tool_bar_style"
         android:elevation="10dp"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-        app:menu="@menu/menu_toolbar"
         app:title="Tus Obras"
         app:titleTextColor="@color/NaranjaBase"
 
