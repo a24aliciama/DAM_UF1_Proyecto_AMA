@@ -10,27 +10,30 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/botonfloatID"
+        style="@style/CustomFABStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:src="@android:drawable/btn_plus"
-        android:tint="@color/NaranjaBase">
+        android:layout_gravity="top|end"
+        android:layout_margin="25dp"
+        android:padding="10dp"
+        android:src="@drawable/plus_pequeno">
         <!--
         app:fabCustomSize="45dp"
         app:layout_anchor="@id/collapsadaToolbarID"
         app:layout_anchorGravity="bottom|end"-->
-
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/appBarLayout"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
-        android:elevation="1dp"
         android:background="@drawable/tool_bar_style"
+        android:elevation="10dp"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        app:menu="@menu/menu_toolbar"
         app:title="Tus Obras"
         app:titleTextColor="@color/NaranjaBase"
+
         >
 
     </com.google.android.material.appbar.MaterialToolbar>
