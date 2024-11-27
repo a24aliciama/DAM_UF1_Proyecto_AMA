@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/obrasFragment">
+
+    <fragment
+        android:id="@+id/escenasFragment"
+        android:name="com.example.proyecto_guion.EscenasFragment"
+        android:label="fragment_escenas"
+        tools:layout="@layout/fragment_escenas" >
+        <action
+            android:id="@+id/action_escenasFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_escenasFragment_to_obrasFragment"
+            app:destination="@id/obrasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.proyecto_guion.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/action_chatFragment_to_escenasFragment"
+            app:destination="@id/escenasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/obrasFragment"
+        android:name="com.example.proyecto_guion.ObrasFragment"
+        android:label="ObrasFragment" >
+        <action
+            android:id="@+id/action_obrasFragment_to_escenasFragment"
+            app:destination="@id/escenasFragment" />
+    </fragment>
+</navigation>

@@ -1,11 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/layoutPintable"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+
+        android:id="@+id/menusLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/toolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/VerdeOscuro"
+            android:backgroundTint="@color/VerdeOscuro"
+            android:orientation="horizontal">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="300dp"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@drawable/tool_bar_style"
+                android:elevation="10dp"
+                android:paddingEnd="20dp"
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+                app:menu="@menu/menu_side"
+                app:title="Tus Obras"
+                app:titleTextColor="@color/NaranjaBase" />
+
+        </LinearLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/container_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:navGraph="@navigation/nav_graph"
+            app:defaultNavHost="true"
+            android:layout_weight="1"
+            />
+
+        <!--
+         app:defaultNavHost="true" es para volver pa tras.
+
+         android:name="androidx.navigation.fragment.NavHostFragment" para decir que fragmento
+         quieres pintar, como queremos varios le decimos que es un host de navegacion (donde hay varios)
+
+         app:navGraph="@navigation/nav_graph" este es el host de navegacion donde estan los fragmentos
+         android:name="com.example.ud04_1_inbox.HelpFragment"
+        -->
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/sidetoolbar"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/header_nav_obras"
+        app:menu="@menu/menu_side"
+        android:layout_gravity="start"
+        >
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

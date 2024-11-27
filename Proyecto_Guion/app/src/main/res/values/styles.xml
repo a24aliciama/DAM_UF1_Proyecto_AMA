@@ -3,13 +3,14 @@
     <style name="CustomFABStyle" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="shapeAppearanceOverlay">@style/CustomFABShape</item>
         <item name="backgroundTint">@color/NaranjaBase</item>
+        <item name="android:paddingRight">5dp</item>
     </style>
 
     <style name="CustomFABShape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeBottomLeft">50dp</item>
-        <item name="cornerSizeBottomRight">10dp</item>
-        <item name="cornerSizeTopLeft">10dp</item>
-        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeTopLeft">50dp</item>
+        <item name="cornerSizeTopRight">10dp</item>
     </style>
 </resources>
