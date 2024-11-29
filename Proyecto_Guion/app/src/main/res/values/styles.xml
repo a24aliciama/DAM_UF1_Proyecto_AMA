@@ -13,4 +13,5 @@
         <item name="cornerSizeTopLeft">50dp</item>
         <item name="cornerSizeTopRight">10dp</item>
     </style>
+
 </resources>

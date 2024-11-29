@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/VerdeBase" /> <!-- Cambia el color de fondo aquí -->
+    <corners
+        android:topRightRadius="35dp"
+        android:bottomRightRadius="200dp"
+        /> <!-- Radio de los bordes -->
+
+    <padding
+        android:left="8dp"
+        android:top="20dp"
+        android:right="20dp"
+        android:bottom="8dp" /> <!-- Opcional, para evitar recortes -->
+</shape>

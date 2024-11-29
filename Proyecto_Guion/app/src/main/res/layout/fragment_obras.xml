@@ -9,15 +9,12 @@
     tools:context=".ObrasFragment">
 
     <LinearLayout
-
-        android:id="@+id/main"
+        android:id="@+id/mainObras"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
-
-
+        <!-- RecyclerView -->
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,6 +25,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:contentDescription="TODO"
         android:src="@drawable/plus_pequeno">
         <!--
     app:fabCustomSize="45dp"

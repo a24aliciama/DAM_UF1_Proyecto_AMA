@@ -9,7 +9,7 @@
 
     <LinearLayout
 
-        android:id="@+id/menusLayout"
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -31,7 +31,7 @@
                 android:elevation="10dp"
                 android:paddingEnd="20dp"
                 android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-                app:menu="@menu/menu_side"
+                app:menu="@menu/menu_toolbar"
                 app:title="Tus Obras"
                 app:titleTextColor="@color/NaranjaBase" />
 
@@ -62,7 +62,7 @@
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/sidetoolbar"
         android:layout_width="300dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:headerLayout="@layout/header_nav_obras"
         app:menu="@menu/menu_side"
         android:layout_gravity="start"

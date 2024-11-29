@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Color de fondo del botón -->
+    <solid android:color="@color/NaranjaBase" />
+
+    <!-- Esquinas redondeadas con control individual -->
+    <corners
+        android:topLeftRadius="200dp"
+        android:topRightRadius="100dp"
+        android:bottomLeftRadius="100dp"
+        android:bottomRightRadius="200dp" />
+
+    <!-- Margen interno opcional -->
+    <padding
+        android:left="16dp"
+        android:top="12dp"
+        android:right="16dp"
+        android:bottom="12dp" />
+</shape>
