@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/VerdeBase" /> <!-- Cambia el color de fondo aquí -->
+
+    <!-- Definir el borde -->
+    <stroke
+        android:color="@color/VerdeClaro"
+        android:width="5dp"
+    /><!-- Grosor del borde -->
+
+
+    <corners
+        android:bottomRightRadius="100dp"
+        android:topRightRadius="35dp"
+        android:topLeftRadius="35dp"
+        android:bottomLeftRadius="100dp"
+
+        /> <!-- Radio de los bordes -->
+    <padding
+        android:left="8dp"
+        android:top="8dp"
+        android:right="8dp"
+        android:bottom="20dp" /> <!-- Opcional, para evitar recortes -->
+</shape>

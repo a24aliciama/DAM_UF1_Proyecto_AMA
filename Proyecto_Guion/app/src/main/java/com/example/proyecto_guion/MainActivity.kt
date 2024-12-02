@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -53,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         //se le pasa el objeto que tiene el nav_graph de navigation para que el menu pase de un fragmento a otro
         val barralado = findViewById<NavigationView>(R.id.sidetoolbar)
         barralado.setupWithNavController(navControla)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -68,4 +68,6 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_toolbar,menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+
 }

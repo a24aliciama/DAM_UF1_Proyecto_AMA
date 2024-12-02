@@ -8,14 +8,15 @@
     android:background="@color/VerdeOscuro"
     tools:context=".ObrasFragment">
 
-    <LinearLayout
-        android:id="@+id/mainObras"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/containerButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
 
-        <!-- RecyclerView -->
-    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/botonfloatID"

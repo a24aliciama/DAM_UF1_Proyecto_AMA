@@ -3,7 +3,7 @@
     <!-- Estado presionado -->
     <item android:state_pressed="true">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="@color/NaranjaBaseOscuro" />
+            <solid android:color="@color/NaranjaOscurisimo" />
             <corners
                 android:topLeftRadius="200dp"
                 android:topRightRadius="100dp"
@@ -20,7 +20,7 @@
     <!-- Estado normal -->
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="@color/NaranjaBase" />
+            <solid android:color="@color/NaranjaOscuro" />
             <corners
                 android:topLeftRadius="200dp"
                 android:topRightRadius="100dp"

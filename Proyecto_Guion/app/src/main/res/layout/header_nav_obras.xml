@@ -5,8 +5,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/VerdeBase"
-        android:background="@drawable/nav_side_style"
         android:orientation="vertical">
 
         <Button
@@ -18,7 +16,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="Eliminar"
-            android:textColor="@color/VerdeOscuro"
+            android:textColor="@color/VerdeBase"
             android:textSize="20sp"
             android:textStyle="bold"
             app:backgroundTint="@null" />
@@ -32,29 +30,31 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="Renombrar"
-            android:textColor="@color/VerdeOscuro"
+            android:textColor="@color/VerdeBase"
             android:textSize="20sp"
             android:textStyle="bold"
             app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/ButtonEliminarTodo"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_margin="8dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/boton_custom"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Eliminar Todo"
-            android:textColor="@color/VerdeOscuro"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/NaranjaOscuro"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="483dp"
+        android:background="@android:color/transparent" />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/ButtonEliminarTodo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/boton_custom_rojo"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Eliminar Todo"
+        android:textColor="@color/VerdeBase"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+         />
+
+</LinearLayout>
 
 

@@ -4,6 +4,9 @@
     <color name="VerdeOscuro">#29412F</color>
     <color name="VerdeClaro">#2F7240</color>
 
+    <color name="NaranjaOscurisimo">#993501</color>
     <color name="NaranjaOscuro">#D35100</color>
+
+    <color name="NaranjaBaseOscuro">#9D5B00</color>
     <color name="NaranjaBase">#FF9500</color>
 </resources>

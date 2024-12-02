@@ -65,6 +65,7 @@
         android:layout_height="wrap_content"
         app:headerLayout="@layout/header_nav_obras"
         app:menu="@menu/menu_side"
+        android:background="@drawable/nav_side_style"
         android:layout_gravity="start"
         >
 

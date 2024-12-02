@@ -34,4 +34,13 @@
             android:id="@+id/action_obrasFragment_to_escenasFragment"
             app:destination="@id/escenasFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/addObrasFragment"
+        android:name="com.example.proyecto_guion.AddObrasFragment"
+        android:label="fragment_add_obras"
+        tools:layout="@layout/fragment_add_obras" >
+        <action
+            android:id="@+id/action_addObrasFragment_to_obrasFragment"
+            app:destination="@id/obrasFragment" />
+    </dialog>
 </navigation>
