@@ -6,12 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyecto_guion.databinding.FragmentObrasBinding
 import java.io.File
@@ -25,7 +22,7 @@ class ObrasFragment : Fragment() {
     val model: GuionViewModel by viewModels(ownerProducer = { this.requireActivity() })
 
     private lateinit var adapter: FolderAdapter
-    private var selectedFolder: File? = null
+    private var selectedFolderObras: File? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,10 +39,13 @@ class ObrasFragment : Fragment() {
         adapter = FolderAdapter(
             folders = emptyList(),
             onFolderClick = { folder ->
+                model.selectFolder(folder) // Guardar la carpeta seleccionada en el ViewModel
+                val navController = activity?.findNavController(R.id.container_fragment)
+                navController?.navigate(R.id.action_obrasFragment_to_escenasFragment) // Navegar al fragmento Escenas
                 Toast.makeText(requireContext(), "Carpeta seleccionada: ${folder.name}", Toast.LENGTH_SHORT).show()
             },
             onLongClick = { folder ->
-                selectedFolder = folder
+                selectedFolderObras = folder
                 toggleSideObrasVisibility()
                 Toast.makeText(requireContext(), "Drawer abierto para: ${folder.name}", Toast.LENGTH_SHORT).show()
             }
@@ -61,7 +61,7 @@ class ObrasFragment : Fragment() {
         }
 
         binding.ButtonEliminar.setOnClickListener {
-            selectedFolder?.let { folder ->
+            selectedFolderObras?.let { folder ->
                 // Eliminar la carpeta seleccionada
                 if (folder.exists() && folder.isDirectory) {
                     val success = folder.deleteRecursively() // Eliminar la carpeta y su contenido

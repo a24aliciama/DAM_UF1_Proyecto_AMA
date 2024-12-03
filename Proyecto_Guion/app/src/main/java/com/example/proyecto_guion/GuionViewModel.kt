@@ -13,7 +13,10 @@ class GuionViewModel: ViewModel() {
     private val _folders = MutableLiveData<List<File>>()
     val folders: LiveData<List<File>> get() = _folders
 
-    // Método para actualizar el nombre
+    private val _selectedFolder = MutableLiveData<File?>()
+    val selectedFolder: LiveData<File?> get() = _selectedFolder
+
+    // Méodo para actualizar el nombre
     fun setName(name: String) {
         _name.value = name
     }
@@ -21,6 +24,12 @@ class GuionViewModel: ViewModel() {
     fun setFolders(folders: List<File>) {
         _folders.value = folders
     }
+
+    fun selectFolder(folder: File) {
+        _selectedFolder.value = folder
+    }
+
+
 
 
 }

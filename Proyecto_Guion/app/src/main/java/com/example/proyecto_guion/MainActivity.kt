@@ -41,13 +41,23 @@ class MainActivity : AppCompatActivity() {
 
         //barra de arriba y controlador de navegacion
         val appBarConfiguration = AppBarConfiguration.Builder(navControla.graph) //le pasamos el grafo de navegacion
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //que se hace cuando se selecciona un item de las opciones
-        val navControlador = findNavController(R.id.container_fragment) //para que encuentre en la actividad el controlador del navegador
-        NavigationUI.onNavDestinationSelected(item,navControlador)
-        return super.onOptionsItemSelected(item)
+        val navControlador = findNavController(R.id.container_fragment) // Encuentra el NavController
+        return when (item.itemId) {
+            R.id.atras -> { // Este es el id de tu item del menú
+                if (!navControlador.popBackStack()) {
+                    // Si no hay nada en la pila de retroceso, haz algo adicional si es necesario
+                    finish() // Cierra la actividad o maneja el caso según tu aplicación
+                }
+                true // Indica que se manejó el evento
+            }
+            else -> super.onOptionsItemSelected(item) // Usa la implementación predeterminada
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
