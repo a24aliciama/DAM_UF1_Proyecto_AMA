@@ -9,7 +9,8 @@ import java.io.File
 
 class FolderAdapter(
     private var folders: List<File>, // Lista de carpetas
-    private val onFolderClick: (File) -> Unit // Función que se llama cuando se hace clic en una carpeta
+    private val onFolderClick: (File) -> Unit, /*Función que se llama cuando se hace clic en una carpeta*/
+    private val onLongClick: (File) -> Unit
 ) : RecyclerView.Adapter<FolderAdapter.FolderViewHolder>() {
     private var selectionEnabled = false
     private var onSelect: ((File) -> Unit)? = null
@@ -33,7 +34,7 @@ class FolderAdapter(
 
     override fun onBindViewHolder(holder: FolderViewHolder, position: Int) {
         val folder = folders[position]
-        holder.bind(folder, onFolderClick, selectionEnabled, onSelect, folder == selectedFolder)
+        holder.bind(folder, onFolderClick, onLongClick, selectionEnabled, onSelect, folder == selectedFolder)
     }
 
     override fun getItemCount() = folders.size
@@ -43,6 +44,7 @@ class FolderAdapter(
         fun bind(
             folder: File,
             onClick: (File) -> Unit,
+            onLongClick: (File) -> Unit,
             selectionEnabled: Boolean,
             onSelect: ((File) -> Unit)?,
             isSelected: Boolean
@@ -56,6 +58,12 @@ class FolderAdapter(
                 } else {
                     onClick(folder)
                 }
+            }
+
+            // Configurar pulsación larga
+            binding.folderButtonObras.setOnLongClickListener {
+                onLongClick(folder) // Llamar a la función pasada como callback
+                true // Indicar que el evento fue manejado
             }
 
             // Cambiar estilo según el estado de selección

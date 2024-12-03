@@ -35,25 +35,12 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar) //esto es para decir que viene por defecto y asi sustituye la que viene por defecto
 
-        //recuperamso el elemento padre (el layout)
-        val layoutPintador = findViewById<DrawerLayout>(R.id.layoutPintable)
-
         //controlador de navegacion
         val navHostFragmento = supportFragmentManager.findFragmentById(R.id.container_fragment) as NavHostFragment
         val navControla = navHostFragmento.navController
 
         //barra de arriba y controlador de navegacion
         val appBarConfiguration = AppBarConfiguration.Builder(navControla.graph) //le pasamos el grafo de navegacion
-        //indico que hay un elemento abrible antes de construirla
-        appBarConfiguration.setOpenableLayout(layoutPintador)
-        val appBarraConstructor = appBarConfiguration.build() //cogemos el objeto buildeado
-
-        //tool bar con controlador para que navegue entre los fragmentos
-        toolbar.setupWithNavController(navControla, appBarraConstructor) //le ponemos los objetos con los que va a funcionar
-
-        //se le pasa el objeto que tiene el nav_graph de navigation para que el menu pase de un fragmento a otro
-        val barralado = findViewById<NavigationView>(R.id.sidetoolbar)
-        barralado.setupWithNavController(navControla)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

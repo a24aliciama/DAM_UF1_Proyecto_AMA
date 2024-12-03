@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyecto_guion.databinding.FragmentObrasBinding
-import com.google.android.material.navigation.NavigationView
 import java.io.File
 
 class ObrasFragment : Fragment() {
@@ -26,6 +25,7 @@ class ObrasFragment : Fragment() {
     val model: GuionViewModel by viewModels(ownerProducer = { this.requireActivity() })
 
     private lateinit var adapter: FolderAdapter
+    private var selectedFolder: File? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,27 +34,70 @@ class ObrasFragment : Fragment() {
         bindingNull = FragmentObrasBinding.inflate(inflater, container, false)
         val vista = binding.root
 
+        binding.sideObras.visibility = View.GONE
+
        (activity as AppCompatActivity).supportActionBar!!.title = "Tus Obras"
 
-        // Inicializamos el RecyclerView con el adapter
-        adapter = FolderAdapter(emptyList()) { folder ->  // <-- Cambiado: Pasar función lambda a `onClick`
-            Toast.makeText(requireContext(), "Carpeta seleccionada: ${folder.name}", Toast.LENGTH_SHORT).show()
-        }
+        // Inicializar el adapter
+        adapter = FolderAdapter(
+            folders = emptyList(),
+            onFolderClick = { folder ->
+                Toast.makeText(requireContext(), "Carpeta seleccionada: ${folder.name}", Toast.LENGTH_SHORT).show()
+            },
+            onLongClick = { folder ->
+                selectedFolder = folder
+                toggleSideObrasVisibility()
+                Toast.makeText(requireContext(), "Drawer abierto para: ${folder.name}", Toast.LENGTH_SHORT).show()
+            }
+        )
 
-
+        // Configurar RecyclerView
         binding.containerButtons.layoutManager = LinearLayoutManager(requireContext())
         binding.containerButtons.adapter = adapter
 
-        // Observamos el LiveData para la lista de carpetas
+        // Observar el LiveData para las carpetas
         model.folders.observe(viewLifecycleOwner) { folders ->
-            adapter.updateFolders(folders) // <-- Cambiado: Usar méodo `updateFolders` del adaptador
+            adapter.updateFolders(folders ?: emptyList()) // Asegurar lista no nula
         }
 
-        // Cargar las carpetas inicialmente
+        binding.ButtonEliminar.setOnClickListener {
+            selectedFolder?.let { folder ->
+                // Eliminar la carpeta seleccionada
+                if (folder.exists() && folder.isDirectory) {
+                    val success = folder.deleteRecursively() // Eliminar la carpeta y su contenido
+                    if (success) {
+                        Toast.makeText(requireContext(), "Carpeta eliminada: ${folder.name}", Toast.LENGTH_SHORT).show()
+                        refreshFolders() // Refrescar la lista de carpetas
+                    } else {
+                        Toast.makeText(requireContext(), "No se pudo eliminar la carpeta", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            binding.sideObras.visibility = View.GONE // Cerrar el panel lateral después de la eliminación
+        }
+
+        // Configurar el FAB para abrir el AddObrasFragment
+        binding.botonfloatID.setOnClickListener {
+            val navController = activity?.findNavController(R.id.container_fragment)
+            if (navController != null) {
+                navController.navigate(R.id.action_obrasFragment_to_addObrasFragment)
+            }
+        }
+
+        // Cargar carpetas al inicio
         loadFolderButtons()
 
-
         return vista
+    }
+
+    private fun toggleSideObrasVisibility() {
+        // Si 'side_obras' está visible, lo ocultamos
+        if (binding.sideObras.visibility == View.VISIBLE) {
+            binding.sideObras.visibility = View.GONE
+        } else {
+            // Si 'side_obras' está oculto, lo mostramos
+            binding.sideObras.visibility = View.VISIBLE
+        }
     }
 
     private fun loadFolderButtons() {

@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_obrasFragment_to_escenasFragment"
             app:destination="@id/escenasFragment" />
+        <action
+            android:id="@+id/action_obrasFragment_to_addObrasFragment"
+            app:destination="@id/addObrasFragment" />
     </fragment>
     <dialog
         android:id="@+id/addObrasFragment"

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/layoutPintable"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/VerdeOscuro"
@@ -27,11 +33,69 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:contentDescription="TODO"
-        android:src="@drawable/plus_pequeno">
-        <!--
-    app:fabCustomSize="45dp"
-    app:layout_anchor="@id/collapsadaToolbarID"
-    app:layout_anchorGravity="bottom|end"-->
+        android:src="@drawable/plus_pequeno"
+        app:strokeColor="@color/NaranjaOscurisimo"
+        app:strokeWidth="20dp"
+        >
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+    <LinearLayout
+    android:id="@+id/side_obras"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/nav_side_style"
+    android:layout_gravity="start"
+    >
+        <Button
+            android:id="@+id/ButtonEliminar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/boton_custom"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Eliminar"
+            android:textColor="@color/VerdeBase"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/ButtonRenombrar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/boton_custom"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Renombrar"
+            android:textColor="@color/VerdeBase"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="385dp"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/ButtonEliminarTodo"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/boton_custom_rojo"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Eliminar Todo"
+            android:textColor="@color/VerdeBase"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+    </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
