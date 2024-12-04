@@ -33,13 +33,21 @@ class ObrasFragment : Fragment() {
 
         binding.sideObras.visibility = View.GONE
 
-       (activity as AppCompatActivity).supportActionBar!!.title = "Tus Obras"
+        (activity as AppCompatActivity).supportActionBar!!.title = "Tus Obras"
+
+        // Detectar toques  de sideObras
+        binding.sideObras.setOnClickListener {
+            if (binding.sideObras.visibility == View.VISIBLE) {
+                binding.sideObras.visibility = View.GONE // Ocultar el panel lateral
+
+            }
+        }
 
         // Inicializar el adapter
         adapter = FolderAdapter(
             folders = emptyList(),
             onFolderClick = { folder ->
-                model.selectFolder(folder) // Guardar la carpeta seleccionada en el ViewModel
+                model.selectFolderObra(folder) // Guardar la carpeta seleccionada en el ViewModel
                 val navController = activity?.findNavController(R.id.container_fragment)
                 navController?.navigate(R.id.action_obrasFragment_to_escenasFragment) // Navegar al fragmento Escenas
                 Toast.makeText(requireContext(), "Carpeta seleccionada: ${folder.name}", Toast.LENGTH_SHORT).show()
@@ -73,6 +81,22 @@ class ObrasFragment : Fragment() {
                     }
                 }
             }
+            binding.sideObras.visibility = View.GONE // Cerrar el panel lateral después de la eliminación
+        }
+
+        binding.ButtonEliminarTodo.setOnClickListener {
+            val rootFolder = File(requireContext().filesDir, "ProyectoGuion") // Carpeta raíz
+
+            if (rootFolder.exists() && rootFolder.isDirectory) {
+                rootFolder.listFiles()?.forEach { folder ->
+                    folder.deleteRecursively() // Eliminar cada carpeta y su contenido
+                }
+                Toast.makeText(requireContext(), "Todas las carpetas se eliminaron correctamente", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "La carpeta raíz no existe o no es válida", Toast.LENGTH_SHORT).show()
+            }
+
+            refreshFolders() // Actualizar la lista de carpetas
             binding.sideObras.visibility = View.GONE // Cerrar el panel lateral después de la eliminación
         }
 
@@ -111,7 +135,7 @@ class ObrasFragment : Fragment() {
         val folders = proyectoGuionDir.listFiles()?.filter { it.isDirectory } ?: emptyList()
 
         // Actualizar la lista de carpetas en el ViewModel
-        model.setFolders(folders)
+        model.setFoldersObras(folders)
     }
 
     // Esta función es llamada después de crear o eliminar una carpeta

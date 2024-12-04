@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditText
+    android:id="@+id/InputText_personaje"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:hint="Personaje"
+    android:inputType="text"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/boton_custom"
+    app:backgroundTint="@null"
+    android:textStyle="bold"
+    android:textColor="@color/VerdeBase"
+    android:textColorHint="@color/NaranjaBaseOscuro"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

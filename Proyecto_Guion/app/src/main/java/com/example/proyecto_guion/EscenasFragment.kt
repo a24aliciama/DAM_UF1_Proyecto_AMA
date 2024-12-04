@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyecto_guion.databinding.FragmentEscenasBinding
-import com.example.proyecto_guion.databinding.FragmentObrasBinding
 import java.io.File
 
 class EscenasFragment : Fragment() {
@@ -23,6 +22,7 @@ class EscenasFragment : Fragment() {
     val model: GuionViewModel by viewModels(ownerProducer = { this.requireActivity() })
 
     private lateinit var adapter: FolderAdapter
+    private var selectedFolderEscenas: File? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +34,22 @@ class EscenasFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar!!.title = "Tus Escenas"
 
+        // Detectar toques  de sideObras
+        binding.sideEscena.setOnClickListener {
+            if (binding.sideEscena.visibility == View.VISIBLE) {
+                binding.sideEscena.visibility = View.GONE // Ocultar el panel lateral
+
+            }
+        }
+
         adapter = FolderAdapter(
             folders = emptyList(),
             onFolderClick = { folder ->
                 Toast.makeText(requireContext(), "Subcarpeta seleccionada: ${folder.name}", Toast.LENGTH_SHORT).show()
             },
             onLongClick = { folder ->
+                selectedFolderEscenas = folder
+                toggleSideEscenasVisibility()
                 Toast.makeText(requireContext(), "Opciones para: ${folder.name}", Toast.LENGTH_SHORT).show()
             }
         )
@@ -49,7 +59,7 @@ class EscenasFragment : Fragment() {
         binding.containerButtonsEscena.adapter = adapter
 
         // Observar el ViewModel para obtener la carpeta seleccionada
-        model.selectedFolder.observe(viewLifecycleOwner) { folder ->
+        model.selectedFolderObra.observe(viewLifecycleOwner) { folder ->
             folder?.let {
                 // Obtener subcarpetas dentro de la carpeta seleccionada
                 val subfolders = folder.listFiles()?.filter { it.isDirectory } ?: emptyList()
@@ -57,7 +67,27 @@ class EscenasFragment : Fragment() {
             }
         }
 
+        // Configurar el FAB para abrir el AddEscenaFragment
+        binding.botonfloatIDEscena.setOnClickListener {
+           /* val navController = activity?.findNavController(R.id.container_fragment)
+            if (navController != null) {
+                navController.navigate(R.id.action_escenasFragment_to_addEscenaFragment)
+            }*/
+            val dialog = AddEscenaFragment()
+            dialog.show(parentFragmentManager, "AddEscenaDialog")
+        }
+
         return binding.root
+    }
+
+    private fun toggleSideEscenasVisibility() {
+        // Si  está visible, lo ocultamos
+        if (binding.sideEscena.visibility == View.VISIBLE) {
+            binding.sideEscena.visibility = View.GONE
+        } else {
+            // Si está oculto, lo mostramos
+            binding.sideEscena.visibility = View.VISIBLE
+        }
     }
 
 }

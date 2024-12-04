@@ -22,7 +22,7 @@
 
     <!-- Campo de entrada de texto -->
     <EditText
-        android:id="@+id/input_Name_Obras"
+        android:id="@+id/input_Name_Escena"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -74,6 +74,7 @@
             android:textColorHint="@color/NaranjaBaseOscuro" />
 
         <Button
+            android:id="@+id/boton_elenco"
             android:layout_width="61dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -90,6 +91,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/containerElenco"
         android:layout_width="match_parent"
         android:layout_height="98dp"
         android:layout_marginBottom="40dp">
@@ -98,7 +100,7 @@
 
     <!-- Botón para confirmar -->
     <Button
-        android:id="@+id/ButtonCrearObras"
+        android:id="@+id/ButtonCrearEscena"
         android:layout_width="109dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"

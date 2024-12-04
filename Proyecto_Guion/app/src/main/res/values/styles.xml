@@ -14,4 +14,12 @@
         <item name="cornerSizeTopRight">10dp</item>
     </style>
 
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Dialog">
+        <!-- Opcional: Personalización básica -->
+        <item name="android:windowBackground">@color/VerdeOscuro</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:windowMinWidthMajor">80%</item> <!-- Ajustar ancho mínimo -->
+        <item name="android:windowMinWidthMinor">80%</item> <!-- Ajustar ancho mínimo -->
+    </style>
+
 </resources>
