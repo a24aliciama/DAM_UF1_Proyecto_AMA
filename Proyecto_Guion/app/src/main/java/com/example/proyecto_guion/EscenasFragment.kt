@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -45,7 +47,13 @@ class EscenasFragment : Fragment() {
         adapter = FolderAdapter(
             folders = emptyList(),
             onFolderClick = { folder ->
-                Toast.makeText(requireContext(), "Subcarpeta seleccionada: ${folder.name}", Toast.LENGTH_SHORT).show()
+                // Guardar la carpeta seleccionada en el ViewModel
+                model.selectFolderEscena(folder)
+
+                // Navegar al fragmento de Escenas o cualquier otro fragmento relacionado
+                val navController = activity?.findNavController(R.id.container_fragment)
+                navController?.navigate(R.id.action_escenasFragment_to_chatFragment) // Cambia este ID según tu necesidad
+                Toast.makeText(requireContext(), "Carpeta seleccionada: ${folder.name}", Toast.LENGTH_SHORT).show()
             },
             onLongClick = { folder ->
                 selectedFolderEscenas = folder
@@ -67,6 +75,49 @@ class EscenasFragment : Fragment() {
             }
         }
 
+        binding.ButtonEliminarEscena.setOnClickListener {
+            selectedFolderEscenas?.let { folder ->
+                // Eliminar la carpeta seleccionada
+                if (folder.exists() && folder.isDirectory) {
+                    val success = folder.deleteRecursively() // Eliminar la carpeta y su contenido
+                    if (success) {
+                        Toast.makeText(requireContext(), "Carpeta eliminada: ${folder.name}", Toast.LENGTH_SHORT).show()
+                        refreshFolders() // Refrescar la lista de carpetas
+                    } else {
+                        Toast.makeText(requireContext(), "No se pudo eliminar la carpeta", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            binding.sideEscena.visibility = View.GONE // Cerrar el panel lateral después de la eliminación
+        }
+
+        binding.ButtonRenombrarEscena.setOnClickListener {
+            selectedFolderEscenas?.let { folder ->
+                // Mostrar un cuadro de diálogo para introducir el nuevo nombre
+                renombrar(folder)
+            } ?: run {
+                Toast.makeText(requireContext(), "No hay carpeta seleccionada para renombrar", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.ButtonEliminarTodoEscena.setOnClickListener {
+            val rootFolder = model.selectedFolderObra.value// Carpeta raíz
+
+            if (rootFolder != null) {
+                if (rootFolder.exists() && rootFolder.isDirectory) {
+                    rootFolder.listFiles()?.forEach { folder ->
+                        folder.deleteRecursively() // Eliminar cada carpeta y su contenido
+                    }
+                    Toast.makeText(requireContext(), "Todas las carpetas se eliminaron correctamente", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "La carpeta raíz no existe o no es válida", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            refreshFolders() // Actualizar la lista de carpetas
+            binding.sideEscena.visibility = View.GONE // Cerrar el panel lateral después de la eliminación
+        }
+
         // Configurar el FAB para abrir el AddEscenaFragment
         binding.botonfloatIDEscena.setOnClickListener {
            /* val navController = activity?.findNavController(R.id.container_fragment)
@@ -76,6 +127,8 @@ class EscenasFragment : Fragment() {
             val dialog = AddEscenaFragment()
             dialog.show(parentFragmentManager, "AddEscenaDialog")
         }
+
+        refreshFolders()
 
         return binding.root
     }
@@ -90,4 +143,55 @@ class EscenasFragment : Fragment() {
         }
     }
 
+    private fun refreshFolders() {
+        val folder = model.selectedFolderObra.value
+        folder?.let {
+            val subfolders = it.listFiles()?.filter { it.isDirectory } ?: emptyList()
+            adapter.updateFolders(subfolders) // Actualizar adaptador con la lista de subcarpetas actualizada
+        }
+    }
+
+    private fun renombrar(folder: File) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Renombrar Escena")
+
+        // Crear un EditText para capturar el nuevo nombre
+        val input = EditText(requireContext())
+        input.hint = "Nuevo nombre"
+        builder.setView(input)
+
+        // Configurar los botones del diálogo
+        builder.setPositiveButton("Renombrar") { dialog, _ ->
+            val newName = input.text.toString().trim()
+            if (newName.isNotEmpty()) {
+                renombrarEscena(folder, newName)
+            } else {
+                Toast.makeText(requireContext(), "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+        }
+        builder.setNegativeButton("Cancelar") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+    }
+
+    private fun renombrarEscena(folder: File, newName: String) {
+        val parentDir = folder.parentFile
+        val newFolder = File(parentDir, newName)
+
+        if (newFolder.exists()) {
+            Toast.makeText(requireContext(), "Ya existe una carpeta con ese nombre", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val success = folder.renameTo(newFolder)
+        if (success) {
+            Toast.makeText(requireContext(), "Escena renombrada a: $newName", Toast.LENGTH_SHORT).show()
+            refreshFolders() // Refrescar la lista de subcarpetas
+        } else {
+            Toast.makeText(requireContext(), "No se pudo renombrar la escena", Toast.LENGTH_SHORT).show()
+        }
+    }
 }

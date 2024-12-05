@@ -9,4 +9,10 @@
 
     <color name="NaranjaBaseOscuro">#9D5B00</color>
     <color name="NaranjaBase">#FF9500</color>
+
+
+    <color name="Gris">#49453D</color>
+    <color name="Negro">#282725</color>
+    <color name="Blanco">#E4CF99</color>
+
 </resources>

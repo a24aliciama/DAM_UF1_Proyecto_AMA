@@ -6,20 +6,12 @@ import androidx.lifecycle.ViewModel
 import java.io.File
 
 class GuionViewModel: ViewModel() {
-    // LiveData para almacenar el nombre
-    private val _name = MutableLiveData<String>()
-    val name: LiveData<String> get() = _name
 
     private val _foldersObras = MutableLiveData<List<File>>()
     val folders: LiveData<List<File>> get() = _foldersObras
 
     private val _selectedFolderObra = MutableLiveData<File?>()
     val selectedFolderObra: LiveData<File?> get() = _selectedFolderObra
-
-    // Méodo para actualizar el nombre
-    fun setName(name: String) {
-        _name.value = name
-    }
 
     fun setFoldersObras(folders: List<File>) {
         _foldersObras.value = folders
@@ -39,6 +31,13 @@ class GuionViewModel: ViewModel() {
     }
 
 
+    // En GuionViewModel
+    private val _selectedFolderEscena = MutableLiveData<File>()
+    val selectedFolderEscena: LiveData<File> get() = _selectedFolderEscena
+
+    fun selectFolderEscena(folder: File) {
+        _selectedFolderEscena.value = folder
+    }
 
 
 }

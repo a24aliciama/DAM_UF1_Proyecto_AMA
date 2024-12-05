@@ -57,7 +57,9 @@ android:backgroundTint="@color/VerdeOscuro"
             app:singleSelection="true"
             app:chipSpacing="8dp"
             app:singleLine="true"
-            android:paddingHorizontal="4dp" />
+            android:paddingHorizontal="4dp"
+        />
+
     </HorizontalScrollView>
 
     <!-- Input de texto y botón de enviar -->

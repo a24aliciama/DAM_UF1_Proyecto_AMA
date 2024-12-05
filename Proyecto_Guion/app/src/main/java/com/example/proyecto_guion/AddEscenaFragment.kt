@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyecto_guion.databinding.FragmentAddEscenaBinding
 import com.example.proyecto_guion.databinding.FragmentAddObrasBinding
+import com.example.proyecto_guion.databinding.FragmentEscenasBinding
 import com.google.gson.Gson
 import java.io.File
 import java.io.FileWriter
@@ -29,6 +30,7 @@ class AddEscenaFragment : DialogFragment() {
     )
 
     private var listener: OnNameEnteredListener? = null
+    private lateinit var adapterEscenas: FolderAdapter
 
     interface OnNameEnteredListener {
         fun onNameEntered(name: String)
@@ -66,7 +68,7 @@ class AddEscenaFragment : DialogFragment() {
 
             val elenco = elencoStr.toIntOrNull()
             if (elenco == null || elenco < 1 || elenco > 10) {
-                Toast.makeText(requireContext(), "El número de personajes debe ser entre 1 y 10.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "El número de personajes debe ser entre 1 y 6.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -94,7 +96,7 @@ class AddEscenaFragment : DialogFragment() {
                             personajesList.add(inputName)
                         }
 
-                        // Guardar en el archivo .txt
+                      /*  // Guardar en el archivo .txt
                         val txtFile = File(newSceneFolder, "elenco.txt")
                         try {
                             FileWriter(txtFile).use { writer ->
@@ -105,8 +107,8 @@ class AddEscenaFragment : DialogFragment() {
                             }
                             Toast.makeText(requireContext(), "Archivo.txt guardado con éxito.", Toast.LENGTH_SHORT).show()
                         } catch (e: IOException) {
-                            Toast.makeText(requireContext(), "Error al guardar el archivo .txt.", Toast.LENGTH_SHORT).show()
-                        }
+                            Toast.makeText(requireContext(), "Error al guardar el archivo.txt.", Toast.LENGTH_SHORT).show()
+                        } */
 
                         // Guardar en el archivo .json
                         val jsonFile = File(newSceneFolder, "elenco.json")
@@ -127,6 +129,7 @@ class AddEscenaFragment : DialogFragment() {
 
                         // Guardar los personajes en el ViewModel
                         model.setPersonajes(personajesList)
+                        model.selectFolderObra(folder)
 
                         dismiss()
                     } else {
@@ -141,15 +144,15 @@ class AddEscenaFragment : DialogFragment() {
         binding.containerElenco.layoutManager = LinearLayoutManager(requireContext())
         binding.containerElenco.adapter = adapter
 
-        // When the 'elenco' button is clicked, generate the number of input fields based on the number entered
+
         binding.botonElenco.setOnClickListener {
             val elencoStr = binding.inputElenco.text.toString().trim()
             val elenco = elencoStr.toIntOrNull()
 
-            if (elenco != null && elenco in 1..10) {
+            if (elenco != null && elenco in 1..6) {
                 adapter.setPersonajeCount(elenco)  // Update the number of character inputs dynamically
             } else {
-                Toast.makeText(requireContext(), "El número de personajes debe ser entre 1 y 10.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "El número de personajes debe ser entre 1 y 6.", Toast.LENGTH_SHORT).show()
             }
         }
 

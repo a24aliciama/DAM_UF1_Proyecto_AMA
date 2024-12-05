@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -84,6 +86,15 @@ class ObrasFragment : Fragment() {
             binding.sideObras.visibility = View.GONE // Cerrar el panel lateral después de la eliminación
         }
 
+        binding.ButtonRenombrar.setOnClickListener {
+            selectedFolderObras?.let { folder ->
+                // Mostrar un cuadro de diálogo para introducir el nuevo nombre
+                renombrar(folder)
+            } ?: run {
+                Toast.makeText(requireContext(), "No hay carpeta seleccionada para renombrar", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         binding.ButtonEliminarTodo.setOnClickListener {
             val rootFolder = File(requireContext().filesDir, "ProyectoGuion") // Carpeta raíz
 
@@ -141,5 +152,49 @@ class ObrasFragment : Fragment() {
     // Esta función es llamada después de crear o eliminar una carpeta
     fun refreshFolders() { // <-- Cambiado: Méodo reutilizado para actualizar carpetas
         loadFolderButtons()
+    }
+
+    private fun renombrar(folder: File) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Renombrar Carpeta")
+
+        // EditText para introducir el nuevo nombre
+        val input = EditText(requireContext())
+        input.hint = "Nuevo nombre"
+        builder.setView(input)
+
+        // Configurar botones del diálogo
+        builder.setPositiveButton("Renombrar") { dialog, _ ->
+            val newName = input.text.toString().trim()
+            if (newName.isNotEmpty()) {
+                renombrarObra(folder, newName)
+            } else {
+                Toast.makeText(requireContext(), "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+        }
+        builder.setNegativeButton("Cancelar") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+    }
+
+    private fun renombrarObra(folder: File, newName: String) {
+        val parentDir = folder.parentFile
+        val newFolder = File(parentDir, newName)
+
+        if (newFolder.exists()) {
+            Toast.makeText(requireContext(), "Ya existe una carpeta con ese nombre", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val success = folder.renameTo(newFolder)
+        if (success) {
+            Toast.makeText(requireContext(), "Carpeta renombrada a: $newName", Toast.LENGTH_SHORT).show()
+            refreshFolders() // Refrescar la lista de carpetas
+        } else {
+            Toast.makeText(requireContext(), "No se pudo renombrar la carpeta", Toast.LENGTH_SHORT).show()
+        }
     }
 }
