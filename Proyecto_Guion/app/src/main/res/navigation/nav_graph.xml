@@ -14,9 +14,6 @@
             android:id="@+id/action_escenasFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
         <action
-            android:id="@+id/action_escenasFragment_to_obrasFragment"
-            app:destination="@id/obrasFragment" />
-        <action
             android:id="@+id/action_escenasFragment_to_addEscenaFragment"
             app:destination="@id/addEscenaFragment" />
     </fragment>
@@ -24,11 +21,7 @@
         android:id="@+id/chatFragment"
         android:name="com.example.proyecto_guion.ChatFragment"
         android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" >
-        <action
-            android:id="@+id/action_chatFragment_to_escenasFragment"
-            app:destination="@id/escenasFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/obrasFragment"
         android:name="com.example.proyecto_guion.ObrasFragment"

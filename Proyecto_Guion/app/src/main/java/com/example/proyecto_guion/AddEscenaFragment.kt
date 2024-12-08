@@ -96,20 +96,6 @@ class AddEscenaFragment : DialogFragment() {
                             personajesList.add(inputName)
                         }
 
-                      /*  // Guardar en el archivo .txt
-                        val txtFile = File(newSceneFolder, "elenco.txt")
-                        try {
-                            FileWriter(txtFile).use { writer ->
-                                writer.write("$personaje\n") // Primero escribe el nombre del personaje
-                                personajesList.forEach { name ->
-                                    writer.write("$name\n") // Luego los nombres del elenco
-                                }
-                            }
-                            Toast.makeText(requireContext(), "Archivo.txt guardado con éxito.", Toast.LENGTH_SHORT).show()
-                        } catch (e: IOException) {
-                            Toast.makeText(requireContext(), "Error al guardar el archivo.txt.", Toast.LENGTH_SHORT).show()
-                        } */
-
                         // Guardar en el archivo .json
                         val jsonFile = File(newSceneFolder, "elenco.json")
                         val jsonContent = mapOf(
