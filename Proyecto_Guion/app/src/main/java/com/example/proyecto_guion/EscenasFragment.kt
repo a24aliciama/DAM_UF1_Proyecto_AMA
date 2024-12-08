@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -152,29 +153,38 @@ class EscenasFragment : Fragment() {
     }
 
     private fun renombrar(folder: File) {
+        val dialogView = layoutInflater.inflate(R.layout.renombrar_dialogo, null)
+
+        val input = dialogView.findViewById<EditText>(R.id.edtNewName)
+        val renameButton = dialogView.findViewById<Button>(R.id.ButtonRenombrar)
+        val cancelButton = dialogView.findViewById<Button>(R.id.ButtonCancelar)
+
+        // Configurar el diálogo
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Renombrar Escena")
+            .setView(dialogView)  // Establecer el diseño personalizado
+            .setCancelable(true)
 
-        // Crear un EditText para capturar el nuevo nombre
-        val input = EditText(requireContext())
-        input.hint = "Nuevo nombre"
-        builder.setView(input)
+        val dialog = builder.create()
 
-        // Configurar los botones del diálogo
-        builder.setPositiveButton("Renombrar") { dialog, _ ->
+        // Configurar botones del diálogo
+        // Configurar el botón "Renombrar"
+        renameButton.setOnClickListener {
             val newName = input.text.toString().trim()
             if (newName.isNotEmpty()) {
                 renombrarEscena(folder, newName)
+                dialog.dismiss()
             } else {
                 Toast.makeText(requireContext(), "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show()
             }
-            dialog.dismiss()
-        }
-        builder.setNegativeButton("Cancelar") { dialog, _ ->
-            dialog.cancel()
         }
 
-        builder.show()
+        // Configurar el botón "Cancelar"
+        cancelButton.setOnClickListener {
+            dialog.cancel() // Cerrar el diálogo
+        }
+
+        // Mostrar el diálogo
+        dialog.show()
     }
 
     private fun renombrarEscena(folder: File, newName: String) {

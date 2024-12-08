@@ -1,38 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="10dp"
     android:layout_marginTop="2dp"
     >
 
-    <TextView
-        android:id="@+id/textViewTuNombre"
-        android:layout_width="wrap_content"
+    <!-- FrameLayout para solapar los TextViews -->
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Personaje"
-        android:background="@drawable/boton_custom_rojo"
-        android:gravity="right"
-        android:layout_gravity="right"
-        android:layout_marginBottom="-15dp"
-        android:layout_marginEnd="25dp"
-        android:translationZ="1dp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <!-- TextView de Nombre del personaje -->
+        <TextView
+            android:id="@+id/textViewNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/boton_custom_rojo"
+            android:gravity="right"
+            android:text="Personaje"
+            android:textStyle="bold"
+            android:textColor="@color/VerdeOscuro"
+            android:translationZ="1dp"
+          />
 
-    <TextView
-        android:id="@+id/textViewTuDialogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Texto tu dialogo personaje"
-        android:background="@drawable/boton_custom"
-        android:gravity="right"
-        android:padding="20dp"
-        android:layout_marginEnd="5dp"
-        android:layout_gravity="right"
-        />
+        <!-- TextView de Mensaje, con visibilidad controlada -->
+        <TextView
+            android:id="@+id/textViewMensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/boton_custom"
+            android:gravity="right"
+            android:padding="20dp"
+            android:textStyle="normal"
+            android:textColor="@color/Negro"
+            android:textSize="16sp"
+            android:text="Texto tu dialogo personaje"
+           /> <!-- Inicialmente oculto -->
 
-</LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

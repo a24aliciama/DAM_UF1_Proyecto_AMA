@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -155,29 +156,38 @@ class ObrasFragment : Fragment() {
     }
 
     private fun renombrar(folder: File) {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Renombrar Carpeta")
+        val dialogView = layoutInflater.inflate(R.layout.renombrar_dialogo, null)
 
-        // EditText para introducir el nuevo nombre
-        val input = EditText(requireContext())
-        input.hint = "Nuevo nombre"
-        builder.setView(input)
+        val input = dialogView.findViewById<EditText>(R.id.edtNewName)
+        val renameButton = dialogView.findViewById<Button>(R.id.ButtonRenombrar)
+        val cancelButton = dialogView.findViewById<Button>(R.id.ButtonCancelar)
+
+        // Configurar el diálogo
+        val builder = AlertDialog.Builder(requireContext())
+            .setView(dialogView)  // Establecer el diseño personalizado
+            .setCancelable(true)
+
+        val dialog = builder.create()
 
         // Configurar botones del diálogo
-        builder.setPositiveButton("Renombrar") { dialog, _ ->
+        // Configurar el botón "Renombrar"
+        renameButton.setOnClickListener {
             val newName = input.text.toString().trim()
             if (newName.isNotEmpty()) {
                 renombrarObra(folder, newName)
+                dialog.dismiss()
             } else {
                 Toast.makeText(requireContext(), "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show()
             }
-            dialog.dismiss()
-        }
-        builder.setNegativeButton("Cancelar") { dialog, _ ->
-            dialog.cancel()
         }
 
-        builder.show()
+        // Configurar el botón "Cancelar"
+        cancelButton.setOnClickListener {
+            dialog.cancel() // Cerrar el diálogo
+        }
+
+        // Mostrar el diálogo
+        dialog.show()
     }
 
     private fun renombrarObra(folder: File, newName: String) {

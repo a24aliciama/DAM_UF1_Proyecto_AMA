@@ -10,7 +10,21 @@
     >
 
     <TextView
-        android:id="@+id/textViewAnotacion"
+        android:id="@+id/textViewNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="//"
+        android:background="@drawable/boton_custom"
+        android:backgroundTint="@color/Negro"
+        android:textColor="@color/Blanco"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="-10dp"
+        android:translationZ="1dp" />
+
+    <TextView
+        android:id="@+id/textViewMensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Texto anotacion"

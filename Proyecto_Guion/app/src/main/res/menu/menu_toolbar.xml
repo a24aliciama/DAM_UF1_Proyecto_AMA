@@ -6,7 +6,7 @@
 
 
     <item android:id="@+id/atras"
-    android:icon="@android:drawable/ic_menu_revert"
+    android:icon="@drawable/angulo_izquierdo"
     android:title=""
     app:showAsAction="always"
 
