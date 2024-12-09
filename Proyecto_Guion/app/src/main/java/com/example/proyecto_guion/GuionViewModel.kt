@@ -30,8 +30,6 @@ class GuionViewModel: ViewModel() {
         _personajes.value = personajesList
     }
 
-
-    // En GuionViewModel
     private val _selectedFolderEscena = MutableLiveData<File>()
     val selectedFolderEscena: LiveData<File> get() = _selectedFolderEscena
 
