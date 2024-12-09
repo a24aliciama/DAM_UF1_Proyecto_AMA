@@ -36,7 +36,7 @@ class ObrasFragment : Fragment() {
 
         binding.sideObras.visibility = View.GONE
 
-        (activity as AppCompatActivity).supportActionBar!!.title = "Tus Obras"
+        (activity as AppCompatActivity).supportActionBar!!.title = getString(R.string.TusObras)
 
         // Detectar toques  de sideObras
         binding.sideObras.setOnClickListener {

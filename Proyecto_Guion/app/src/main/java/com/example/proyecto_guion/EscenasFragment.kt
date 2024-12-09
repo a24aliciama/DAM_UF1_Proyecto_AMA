@@ -35,9 +35,10 @@ class EscenasFragment : Fragment() {
 
         binding.sideEscena.visibility = View.GONE
 
-        (activity as AppCompatActivity).supportActionBar!!.title = "Tus Escenas"
+        (activity as AppCompatActivity).supportActionBar!!.title = (model.selectedFolderObra.value?.name
+            ?: "") + " " + getString(R.string.TusEscenas)
 
-        // Detectar toques  de sideObras
+                // Detectar toques  de sideObras
         binding.sideEscena.setOnClickListener {
             if (binding.sideEscena.visibility == View.VISIBLE) {
                 binding.sideEscena.visibility = View.GONE // Ocultar el panel lateral

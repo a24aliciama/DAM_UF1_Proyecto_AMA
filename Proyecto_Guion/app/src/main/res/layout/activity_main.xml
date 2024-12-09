@@ -25,7 +25,7 @@
                 android:paddingEnd="20dp"
                 android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
                 app:menu="@menu/menu_toolbar"
-                app:title="Tus Obras"
+                app:title="@string/TusObras"
                 app:titleTextColor="@color/NaranjaBase" />
 
         </LinearLayout>

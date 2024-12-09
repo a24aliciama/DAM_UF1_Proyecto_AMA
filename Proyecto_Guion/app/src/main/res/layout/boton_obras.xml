@@ -8,7 +8,7 @@
     android:background="@drawable/boton_custom"
     android:gravity="center"
     android:padding="15dp"
-    android:text="Folder Name"
+    android:text="@string/folder_name"
     android:textColor="@color/VerdeOscuro"
     android:textSize="20sp"
     android:textStyle="bold"

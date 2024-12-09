@@ -1,5 +1,28 @@
 <resources>
-    <string name="app_name">Proyecto-Guion</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Theatrical Script Studio</string>
+    <string name="TusObras">Your Plays</string>
+    <string name="TusEscenas">Scenes</string>
+    <string name="anotacion">//</string>
+    <string name="texto_anotacion">Annotated Text</string>
+    <string name="folder_name">Folder Name</string>
+    <string name="personaje">Character</string>
+    <string name="texto_dialogo_personaje">Character Dialogue Text</string>
+    <string name="elenco">Cast</string>
+    <string name="nueva_escena">New Scene</string>
+    <string name="nombre">Name</string>
+    <string name="tu_personaje">Your Character</string>
+    <string name="n_personajes">Nº of Extra Characters</string>
+    <string name="plus">+</string>
+    <string name="crear">Create</string>
+    <string name="nueva_obra">New Play</string>
+    <string name="escribe_el_texto_del_personaje_elegido">Write the text of the chosen character</string>
+    <string name="enviar_mensaje">Send Message</string>
+    <string name="acci_n_r_pida">Quick Action</string>
+    <string name="anhadir">Add</string>
+    <string name="eliminar">Delete</string>
+    <string name="renombrar">Rename</string>
+    <string name="eliminar_todo">Delete All</string>
+    <string name="nuevo_nombre">New Name</string>
+    <string name="cancelar">Cancel</string>
+    <string name="texto_tu_dialogo_personaje">Your Characters Dialogue Text</string>
 </resources>

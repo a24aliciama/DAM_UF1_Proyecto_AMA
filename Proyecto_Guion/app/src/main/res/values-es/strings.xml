@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Guion Estudio</string>
+    <string name="TusObras">Tus Obras</string>
+    <string name="TusEscenas">escenas</string>
+    <string name="anotacion">//</string>
+    <string name="texto_anotacion">Texto anotacion</string>
+    <string name="folder_name">Nombre Carpeta</string>
+    <string name="personaje">Personaje</string>
+    <string name="texto_dialogo_personaje">Texto dialogo personaje</string>
+    <string name="elenco">Elenco</string>
+    <string name="nueva_escena">Nueva Escena</string>
+    <string name="nombre">Nombre</string>
+    <string name="tu_personaje">Tu Personaje</string>
+    <string name="n_personajes">Nº Personajes Extra</string>
+    <string name="plus">+</string>
+    <string name="crear">Crear</string>
+    <string name="nueva_obra">Nueva Obra</string>
+    <string name="escribe_el_texto_del_personaje_elegido">Escribe el texto del personaje elegido</string>
+    <string name="enviar_mensaje">Enviar mensaje</string>
+    <string name="acci_n_r_pida">Acción rápida</string>
+    <string name="anhadir">añadir</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="renombrar">Renombrar</string>
+    <string name="eliminar_todo">Eliminar Todo</string>
+    <string name="nuevo_nombre">Nuevo Nombre</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="texto_tu_dialogo_personaje">Texto tu dialogo personaje</string>
+</resources>

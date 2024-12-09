@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyecto_guion.databinding.FragmentChatBinding
@@ -34,6 +35,10 @@ class ChatFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         bindingNull = FragmentChatBinding.inflate(inflater, container, false)
+
+        (activity as AppCompatActivity).supportActionBar!!.title = (model.selectedFolderObra.value?.name
+            ?: getString(R.string.TusEscenas)) + " "+  (model.selectedFolderEscena.value?.name
+            ?: "")
 
         loadMessagesFromJson()
         // Llamar a la función que carga los chips

@@ -27,7 +27,7 @@
             android:layout_marginEnd="25dp"
             android:background="@drawable/boton_custom_rojo"
             android:gravity="right"
-            android:text="Personaje"
+            android:text="@string/personaje"
             android:textStyle="bold"
             android:textColor="@color/VerdeOscuro"
             android:translationZ="1dp"
@@ -47,7 +47,7 @@
             android:textStyle="normal"
             android:textColor="@color/Negro"
             android:textSize="16sp"
-            android:text="Texto tu dialogo personaje"
+            android:text="@string/texto_tu_dialogo_personaje"
            /> <!-- Inicialmente oculto -->
 
     </FrameLayout>
