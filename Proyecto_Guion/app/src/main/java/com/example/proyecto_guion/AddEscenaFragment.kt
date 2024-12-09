@@ -67,8 +67,8 @@ class AddEscenaFragment : DialogFragment() {
             }
 
             val elenco = elencoStr.toIntOrNull()
-            if (elenco == null || elenco < 1 || elenco > 10) {
-                Toast.makeText(requireContext(), "El número de personajes debe ser entre 1 y 6.", Toast.LENGTH_SHORT).show()
+            if (elenco == null || elenco < 0 || elenco > 10) {
+                Toast.makeText(requireContext(), "El número de personajes debe ser entre 0 y 6.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -135,7 +135,7 @@ class AddEscenaFragment : DialogFragment() {
             val elencoStr = binding.inputElenco.text.toString().trim()
             val elenco = elencoStr.toIntOrNull()
 
-            if (elenco != null && elenco in 1..6) {
+            if (elenco != null && elenco in 0..6) {
                 adapter.setPersonajeCount(elenco)  // Update the number of character inputs dynamically
             } else {
                 Toast.makeText(requireContext(), "El número de personajes debe ser entre 1 y 6.", Toast.LENGTH_SHORT).show()
